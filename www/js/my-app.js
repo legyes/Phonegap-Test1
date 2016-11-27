@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     $('#link_refresh').on('click',function(){
+        alert('Refresh RSS');
         refreshRSS();
     });
 
