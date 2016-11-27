@@ -30,4 +30,9 @@ function refreshRSS() {
 }
 
 var permissions = cordova.plugins.permissions;
+/*
+permissions.hasPermission(permission, successCallback, errorCallback);
+permissions.requestPermission(permission, successCallback, errorCallback);
+permissions.requestPermissions(permissions, successCallback, errorCallback);
+*/
 alert( permissions );
