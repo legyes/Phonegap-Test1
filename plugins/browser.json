@@ -1,0 +1,21 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.legyes.p1race"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.legyes.p1race"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.legyes.p1race"
+        }
+    },
+    "dependent_plugins": {}
+}

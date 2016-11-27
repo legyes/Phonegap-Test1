@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <title>My App</title>
+
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/ratchet/css/ratchet.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="theme-red">
+    <a href="#myModalexample" class="btn pull-left">Open modal</a>
+    <header class="bar bar-nav">
+        <a href="#myModalexample" class="btn pull-right">Menü</a>
+
+        <a href="#myPopover">
+            <h1 class="title">
+            P1race
+            <span class="icon icon-caret"></span>
+            </h1>
+        </a>
+
+    </header>
+
+    <div class="content" style="margin: 10px;">
+        <ul id="news_fresh" style="padding: 0px; margin: 0px;"></ul>
+    </div>
+
+    <div id="myModalexample" class="modal">
+        <header class="bar bar-nav">
+            <a class="icon icon-close pull-right" href="#myModalexample"></a>
+            <h1 class="title">Menü</h1>
+        </header>
+
+        <div class="content">
+            <p class="content-padded">
+                <ul class="table-view">
+                <li class="table-view-cell">
+                    <a class="navigate-right">
+                    <span class="badge">5</span>
+                    MotoGP
+                    </a>
+                </li>
+                <li class="table-view-cell">
+                    <a class="navigate-right">
+                    <span class="badge">5</span>
+                    Moto2
+                    </a>
+                </li>
+                <li class="table-view-cell">
+                    <a class="navigate-right">
+                    <span class="badge">5</span>
+                    WTCC
+                    </a>
+                </li>
+                </ul>                
+            </p>
+        </div>
+    </div>
+
+
+    <div id="myPopover" class="popover">
+        <header class="bar bar-nav">
+            <h1 class="title">Kategóriák</h1>
+        </header>
+        <ul class="table-view">
+            <li class="table-view-cell">Item1</li>
+            <li class="table-view-cell">Item2</li>
+            <li class="table-view-cell">Item3</li>
+            <li class="table-view-cell">Item4</li>
+            <li class="table-view-cell">Item5</li>
+            <li class="table-view-cell">Item6</li>
+            <li class="table-view-cell">Item7</li>
+            <li class="table-view-cell">Item8</li>
+        </ul>
+    </div>
+
+    <nav class="bar bar-tab">
+        <a class="tab-item active" href="#" id="link_home" onclick="window.open('http://p1race.hu', '_system');">
+            <span class="icon icon-home"></span>
+            <span class="tab-label">Kezdőlap</span>
+        </a>
+        <a class="tab-item" href="#" id="link_refresh">
+            <span class="icon icon-refresh"></span>
+            <span class="tab-label">Frissít</span>
+        </a>
+        <a class="tab-item" href="#">
+            <span class="icon icon-star-filled"></span>
+            <span class="tab-label">Kedvencek</span>
+        </a>
+        <a class="tab-item" href="#">
+            <span class="icon icon-search"></span>
+            <span class="tab-label">Keresés</span>
+        </a>
+        <a class="tab-item" href="#">
+            <span class="icon icon-gear"></span>
+            <span class="tab-label">Beállítások</span>
+        </a>
+    </nav>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="lib/ratchet/js/ratchet.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+</body>
+
+</html>
