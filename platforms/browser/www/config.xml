@@ -3,11 +3,11 @@
     <name>P1race</name>
     <description>P1race RSS app teszt</description>
     <author email="legyes@legyes.hu" href="http://legyes.hu">
-        Takács "LeGyEs" József
+        Takács - LeGyEs - József
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <access origin="http://p1race.hu" />
+    <access origin="http://p1race.hu" subdomains="true" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <preference name="DisallowOverscroll" value="true" />
