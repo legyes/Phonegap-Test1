@@ -28,3 +28,6 @@ function refreshRSS() {
     },'xml');
 
 }
+
+var permissions = cordova.plugins.permissions;
+alert( permissions );
