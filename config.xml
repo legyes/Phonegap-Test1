@@ -7,6 +7,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <access origin="http://p1race.hu" subdomains="true"/>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <platform name="android">
