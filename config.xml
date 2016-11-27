@@ -1,20 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.legyes.p1race" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>P1race</name>
-    <description>
-        A basic Framework7 template for PhoneGap.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <description>P1race RSS app teszt</description>
+    <author email="legyes@legyes.hu" href="http://legyes.hu">
+        Takács "LeGyEs" József
     </author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
     <platform name="android">
         <preference name="android-minSdkVersion" value="14" />
         <allow-intent href="market:*" />
