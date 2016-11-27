@@ -15,6 +15,9 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.legyes.p1race"
+        },
+        "cordova-plugin-android-permissions": {
+            "PACKAGE_NAME": "com.legyes.p1race"
         }
     },
     "dependent_plugins": {}
