@@ -5,7 +5,13 @@ $(document).ready(function(){
         refreshRSS();
     });
 
+    $('#link_search').on('click', function(){
+        $('#news_fresh').html('Gomb lenyomva');
+    });
+
 });
+
+
 
 function refreshRSS() {
     $('#news_fresh').html('');
