@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src *;">
 
     <!-- Required meta tags-->
     <meta charset="utf-8">
@@ -14,104 +14,79 @@
     <title>My App</title>
 
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="lib/ratchet/css/ratchet.min.css">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="theme-red">
-    <a href="#myModalexample" class="btn pull-left">Open modal</a>
-    <header class="bar bar-nav">
-        <a href="#myModalexample" class="btn pull-right">Menü</a>
+<body style="background-color: #eeeeee;">
 
-        <a href="#myPopover">
-            <h1 class="title">
-            P1race
-            <span class="icon icon-caret"></span>
-            </h1>
-        </a>
-
-    </header>
-
-    <div class="content" style="margin: 10px;">
-        <ul id="news_fresh" style="padding: 0px; margin: 0px;"></ul>
+    <div style="position: fixed; top: 0px; left: 0px; text-align: center; width: 100%; overflow: hidden; z-index: 100;">
+        <img src="images/bg_head1.png" style="width: 180%;" />
+        <div style="position: absolute; right: 0px; top: 0px;">
+            <a href="#" class="btn" style="font-size: 6vw;" onclick="$('#modal_menu').modal('show');"><i class="fa fa-bars"></i></a></div>
     </div>
 
-    <div id="myModalexample" class="modal">
-        <header class="bar bar-nav">
-            <a class="icon icon-close pull-right" href="#myModalexample"></a>
-            <h1 class="title">Menü</h1>
-        </header>
-
-        <div class="content">
-            <p class="content-padded">
-                <ul class="table-view">
-                <li class="table-view-cell">
-                    <a class="navigate-right">
-                    <span class="badge">5</span>
-                    MotoGP
-                    </a>
-                </li>
-                <li class="table-view-cell">
-                    <a class="navigate-right">
-                    <span class="badge">5</span>
-                    Moto2
-                    </a>
-                </li>
-                <li class="table-view-cell">
-                    <a class="navigate-right">
-                    <span class="badge">5</span>
-                    WTCC
-                    </a>
-                </li>
-                </ul>                
-            </p>
+    <div style="padding: 50px 0px;">
+        <div style="margin: 10px; margin-bottom: 100px;">
+            <ul id="news_fresh" style="padding: 0px; margin: 0px;"></ul>
         </div>
+
+        <div id="teszt"></div>
     </div>
 
-    <div id="teszt"></div>
 
-    <div id="myPopover" class="popover">
-        <header class="bar bar-nav">
-            <h1 class="title">Kategóriák</h1>
-        </header>
-        <ul class="table-view">
-            <li class="table-view-cell">Moto2</li>
-            <li class="table-view-cell">Moto3</li>
-            <li class="table-view-cell">MotoGP</li>
-            <li class="table-view-cell">Superbike</li>
-            <li class="table-view-cell">Supersport</li>
-            <li class="table-view-cell">WTCC</li>
-            <li class="table-view-cell">ETCC</li>
-            <li class="table-view-cell">TCR</li>
-        </ul>
+
+<div id="modal_menu" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+    <div style="display: none; position: fixed; bottom: 0px; left: 0px; width: 100%; border-top: 1px solid silver;">
+        <nav class="text-center">
+            <div class="col-xs-3">
+                <a class="tab-item" href="#" id="link_home" onclick="window.open('http://p1race.hu', '_system');">
+                    <div style="font-size: 8vw;"><i class="fa fa-home"></i></div>
+                    <div class="tab-label">Kezdőlap</div>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="tab-item" href="#" id="link_refresh">
+                    <div style="font-size: 8vw;"><i class="fa fa-refresh"></i></div>
+                    <div class="tab-label">Frissít</div>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="tab-item" href="#" id="link_bookmarks">
+                    <div style="font-size: 8vw;"><i class="fa fa-bookmark"></i></div>
+                    <div class="tab-label">Kedvencek</div>
+                </a>
+            </div>
+            <div class="col-xs-3">
+                <a class="tab-item" href="#" id="link_settings">
+                    <div style="font-size: 8vw;"><i class="fa fa-gears"></i></div>
+                    <div class="tab-label">Beállítások</div>
+                </a>
+            </div>
+            <siv class="clearfix"></div>
+        </nav>
     </div>
-
-    <nav class="bar bar-tab">
-        <a class="tab-item active" href="#" id="link_home" onclick="window.open('http://p1race.hu', '_system');">
-            <span class="icon icon-home"></span>
-            <span class="tab-label">Kezdőlap</span>
-        </a>
-        <a class="tab-item" href="#" onclick="refreshRSS();">
-            <span class="icon icon-refresh"></span>
-            <span class="tab-label">Frissít</span>
-        </a>
-        <a class="tab-item" href="#" id="link_refresh">
-            <span class="icon icon-star-filled"></span>
-            <span class="tab-label">Kedvencek</span>
-        </a>
-        <a class="tab-item" href="#" id="link_search">
-            <span class="icon icon-search"></span>
-            <span class="tab-label">Keresés</span>
-        </a>
-        <a class="tab-item" href="#">
-            <span class="icon icon-gear"></span>
-            <span class="tab-label">Beállítások</span>
-        </a>
-    </nav>
-
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="lib/ratchet/js/ratchet.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>
 </body>
 

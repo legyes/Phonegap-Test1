@@ -6,10 +6,10 @@
         Takács - LeGyEs - József
     </author>
     <content src="index.html" />
+    <access origin="*" />
     <access origin="content:///*" />
     <allow-navigation href="data:*" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
-    <access origin="*" />
     <preference name="DisallowOverscroll" value="true" />
 </widget>
