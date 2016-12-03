@@ -23,6 +23,15 @@ catch (err) {
 }
 
 $(document).ready(function(){
+
+    $('#refresh').show();
+
+    $(document).on('scroll',function(){
+        if( window.pageYOffset == 0 ) {
+            refreshRSSOnline();
+        }
+    });
+
     //checkConnection();
     refreshRSS();
     refreshCategories();
@@ -70,7 +79,6 @@ function refreshRSS() {
 
         $.when(
             $.each(articles, function(i, article){
-                alert(article.Title);
             $('#news_fresh').append(
                 '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
                     '<div><h3>'+ article.Title +'</h3></div>' +
@@ -87,7 +95,8 @@ function refreshRSS() {
                 '</article>');
             })
         ).done(function(){
-            refreshRSSOnline();
+            window.scrollBy(0,50);
+            //refreshRSSOnline();
         });
     }
     else {
@@ -121,7 +130,7 @@ function refreshRSSOnline() {
                 });
 
         },'json').done(function(){
-
+            window.scrollBy(0,50);
             window.localStorage.setItem('articles', JSON.stringify(cache_articles));
 
 
