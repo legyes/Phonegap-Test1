@@ -24,6 +24,8 @@ catch (err) {
 
 $(document).ready(function(){
 
+    alert( window.localStorage.getItem('articles') );
+
     //checkConnection();
     refreshRSS();
     refreshCategories();
