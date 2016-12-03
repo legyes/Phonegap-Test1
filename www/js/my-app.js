@@ -106,8 +106,8 @@ function refreshRSS() {
  }
 
 function refreshRSSOnline() {
-    $('#news_fresh').html('');
         $.post("http://www.p1race.hu/api/articles/",{}, function(data) {
+            $('#news_fresh').html('');
             cache_articles = data.articles;
             $(data.articles).each(function(i, article){
 
@@ -137,6 +137,8 @@ function refreshRSSOnline() {
             $('article').off('click').on('click',function() {
                 window.open( $(this).data('target'), '_system');
             });
+        }).fail(function(){
+            alert('Nincs kapcsolat :(');
         });    
 }
 
