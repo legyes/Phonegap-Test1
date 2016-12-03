@@ -28,5 +28,4 @@
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
     <plugin name="cordova-plugin-android-permissions" spec="~0.10.0" />
-    <plugin name="cordova-sqlite-storage" spec="~2.0.0">
 </widget>

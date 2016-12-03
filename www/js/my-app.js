@@ -20,7 +20,7 @@ catch (err) {
     // pre Android 6.0 hack
 }
 
-
+/*
 document.addEventListener('deviceready', function() {
   db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
 
@@ -29,6 +29,7 @@ document.addEventListener('deviceready', function() {
     storage.setItem(key, value)
     storage.removeItem(key)
 });
+*/
 
 $(document).ready(function(){
 
