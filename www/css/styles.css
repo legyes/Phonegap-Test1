@@ -10,6 +10,62 @@
    See https://github.com/apache/cordova-plugin-statusbar
 */
 
+.body {
+    background-color: #eeeeee;
+}
+
+#header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    width: 100%;
+    overflow: hidden; 
+    z-index: 100;
+}
+
+#header_buttons {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: #8CC63F;
+}
+
+#header_buttons .btn {
+    color: #86B54B !important;
+    font-size: 6vw;
+}
+
+#articles {
+    padding: 50px 0px;
+}
+
+#articles > div {
+    margin: 10px;
+    margin-bottom: 100px;
+}
 .statusbar-overlay {
     background: #000000;
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+  width: 100%;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  width: 80%;
+  max-width: 300px;
 }
