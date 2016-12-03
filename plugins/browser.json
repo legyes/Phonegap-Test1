@@ -18,6 +18,9 @@
         },
         "cordova-plugin-android-permissions": {
             "PACKAGE_NAME": "com.legyes.p1race"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.legyes.p1race"
         }
     },
     "dependent_plugins": {}
