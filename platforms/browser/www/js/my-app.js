@@ -17,11 +17,12 @@ catch (err) {
     // pre Android 6.0 hack
 }
 
-$(document).ready(function(){
 
-    if (typeof(Storage) !== "undefined") {
-    } else {
-    }
+document.addEventListener('deviceready', function() {
+  db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
+});
+
+$(document).ready(function(){
 
     //checkConnection();
     refreshRSS();
