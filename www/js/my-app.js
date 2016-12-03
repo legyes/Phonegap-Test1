@@ -23,9 +23,6 @@ catch (err) {
 }
 
 $(document).ready(function(){
-
-    alert( window.localStorage.getItem('articles') );
-
     //checkConnection();
     refreshRSS();
     refreshCategories();
@@ -68,6 +65,7 @@ function checkConnection() {
 function refreshRSS() {
 
     if ( typeof window.localStorage.getItem('articles' !== null)) {
+        alert('articles OK');
         articles = JSON.parse( window.localStorage.getItem('articles') );
         $('#news_fresh').html('');
 
@@ -93,6 +91,7 @@ function refreshRSS() {
         });
     }
     else {
+        alert('articles :(');
         refreshRSSOnline();
     }
 
