@@ -95,7 +95,7 @@ function refreshRSS() {
                 '</article>');
             })
         ).done(function(){
-            window.scrollBy(0,50);
+            window.scrollBy(0,100);
             //refreshRSSOnline();
         });
     }
@@ -130,7 +130,7 @@ function refreshRSSOnline() {
                 });
 
         },'json').done(function(){
-            window.scrollBy(0,50);
+            window.scrollBy(0,100);
             window.localStorage.setItem('articles', JSON.stringify(cache_articles));
 
 
