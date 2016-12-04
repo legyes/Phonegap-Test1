@@ -23,47 +23,52 @@ catch (err) {
 }
 
 $(document).ready(function(){
-
-    $('#refresh').show();
-    
-    $(document).on('scroll',function(){
-        if( window.pageYOffset == 0 ) {
-            refreshRSSOnline();
-            alert("Frissítés");
+    try {
+        $('#refresh').show();
+        
+        $(document).on('scroll',function(){
+            if( window.pageYOffset == 0 ) {
+                refreshRSSOnline();
+                alert("Frissítés");
+            }
+        });
+        
+        if( typeof window.localStorage === 'undefined' ) {
+            alert('localStorage nem elérhető :(');
         }
-    });
-    
-    if( typeof window.localStorage === 'undefined' ) {
-        alert('localStorage nem elérhető :(');
-    }
 
-    //checkConnection();
-    refreshRSS();
-    refreshCategories();
-
-    $('#link_refresh').on('click',function(){
+        //checkConnection();
         refreshRSS();
-    });
+        refreshCategories();
 
-    $('#link_search').on('click', function(){
-        $('#news_fresh').html('Gomb lenyomva');
-    });
+        $('#link_refresh').on('click',function(){
+            refreshRSS();
+        });
 
-    // side menu
-    $('#a_menu').on('click',function(){
+        $('#link_search').on('click', function(){
+            $('#news_fresh').html('Gomb lenyomva');
+        });
 
-        if ( $('aside').hasClass('closed') ) {
-            $('aside').animate({
-                width: '300px'
-            }).addClass('open').removeClass('closed');
-        }
-        else {
-            $('aside').animate({
-                width: '0px'
-            }).addClass('closed').removeClass('open');
-        }
+        // side menu
+        $('#a_menu').on('click',function(){
 
-    });
+            if ( $('aside').hasClass('closed') ) {
+                $('aside').animate({
+                    width: '300px'
+                }).addClass('open').removeClass('closed');
+            }
+            else {
+                $('aside').animate({
+                    width: '0px'
+                }).addClass('closed').removeClass('open');
+            }
+
+        });
+
+    }
+    catch(err) {
+        alert(err);
+    }
 
 });
 
@@ -78,7 +83,12 @@ function checkConnection() {
 
 function refreshRSS() {
     try {
-        if ( typeof window.localStorage !== 'undefined' && typeof window.localStorage !== null && typeof window.localStorage.getItem('articles' !== null)) {
+        if ( 
+                typeof window.localStorage !== 'undefined' && 
+                typeof window.localStorage !== null && 
+                typeof window.localStorage.getItem('articles' !== null) &&
+                JSON.parse( window.localStorage.getItem('articles') ).length > 0
+        ) {
             articles = JSON.parse( window.localStorage.getItem('articles') );
             $('#news_fresh').html('');
 
@@ -116,6 +126,7 @@ function refreshRSS() {
  }
 
 function refreshRSSOnline() {
+    try {
         $.post("http://www.p1race.hu/api/articles/",{}, function(data) {
             $('#news_fresh').html('');
             cache_articles = data.articles;
@@ -153,28 +164,38 @@ function refreshRSSOnline() {
         }).fail(function(){
             window.scrollBy(0,100);
             alert('Nincs kapcsolat :(');
-        });    
+        });
+    }
+    catch(err) {
+        alert(err);
+    }
 }
 
 function refreshCategories() {
-    c = $('#aside_menu');
-    c.html('<div class="col-md-12 text-center"><select id="select_category" class="form-control"></select></div>');
+    try {
+        c = $('#aside_menu');
+        c.html('<div class="col-md-12 text-center"><select id="select_category" class="form-control"></select></div>');
 
-    s = c.find('select');
+        s = c.find('select');
 
-    $.post('http://www.p1race.hu/api/categories',{},function(data){
-        cache_categories = data.categories;
-        $(data.categories).each(function(i, category){
+        $.post('http://www.p1race.hu/api/categories',{},function(data){
+            cache_categories = data.categories;
+            $(data.categories).each(function(i, category){
 
-             s.append('<option value="'+ category.ID +'">'+ category.Name +'</option>');
+                s.append('<option value="'+ category.ID +'">'+ category.Name +'</option>');
 
-        });
+            });
 
-        c.off('change').on('change', function(){
-            $('#modal_menu').modal('hide');
-        });
+            c.off('change').on('change', function(){
+                $('#modal_menu').modal('hide');
+            });
 
-    },'json');
+        },'json');
+
+    }
+    catch(err) {
+        alert(err);
+    }
 
 }
 

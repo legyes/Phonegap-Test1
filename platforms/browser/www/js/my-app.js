@@ -23,43 +23,52 @@ catch (err) {
 }
 
 $(document).ready(function(){
-
-    $('#refresh').show();
-    
-    $(document).on('scroll',function(){
-        if( window.pageYOffset == 0 ) {
-            refreshRSSOnline();
+    try {
+        $('#refresh').show();
+        
+        $(document).on('scroll',function(){
+            if( window.pageYOffset == 0 ) {
+                refreshRSSOnline();
+                alert("Frissítés");
+            }
+        });
+        
+        if( typeof window.localStorage === 'undefined' ) {
+            alert('localStorage nem elérhető :(');
         }
-    });
-    
 
-    //checkConnection();
-    refreshRSS();
-    refreshCategories();
-
-    $('#link_refresh').on('click',function(){
+        //checkConnection();
         refreshRSS();
-    });
+        refreshCategories();
 
-    $('#link_search').on('click', function(){
-        $('#news_fresh').html('Gomb lenyomva');
-    });
+        $('#link_refresh').on('click',function(){
+            refreshRSS();
+        });
 
-    // side menu
-    $('#a_menu').on('click',function(){
+        $('#link_search').on('click', function(){
+            $('#news_fresh').html('Gomb lenyomva');
+        });
 
-        if ( $('aside').hasClass('closed') ) {
-            $('aside').animate({
-                width: '300px'
-            }).addClass('open').removeClass('closed');
-        }
-        else {
-            $('aside').animate({
-                width: '0px'
-            }).addClass('closed').removeClass('open');
-        }
+        // side menu
+        $('#a_menu').on('click',function(){
 
-    });
+            if ( $('aside').hasClass('closed') ) {
+                $('aside').animate({
+                    width: '300px'
+                }).addClass('open').removeClass('closed');
+            }
+            else {
+                $('aside').animate({
+                    width: '0px'
+                }).addClass('closed').removeClass('open');
+            }
+
+        });
+
+    }
+    catch(err) {
+        alert(err);
+    }
 
 });
 
@@ -73,43 +82,57 @@ function checkConnection() {
 }
 
 function refreshRSS() {
+    try {
+        if ( 
+                typeof window.localStorage !== 'undefined' && 
+                typeof window.localStorage !== null && 
+                typeof window.localStorage.getItem('articles' !== null) &&
+                JSON.parse( window.localStorage.getItem('articles') ).length > 0
+        ) {
+            articles = JSON.parse( window.localStorage.getItem('articles') );
+            $('#news_fresh').html('');
 
-    if ( typeof window.localStorage.getItem('articles' !== null)) {
-        articles = JSON.parse( window.localStorage.getItem('articles') );
-        $('#news_fresh').html('');
+            $.when(
+                $.each(articles, function(i, article){
+                $('#news_fresh').append(
+                    '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
+                        '<div><h3>'+ article.Title +'</h3></div>' +
+                        '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
+                            '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
+                            '<div style="position: absolute; top: 20px; left: 0px; background-color: #94D34A; color: #ffffff; padding: 5px; font-weight: bold; text-shadow: 1px 1px 2px black;">'+ article.CategoryName +'</div>' +
+                        '</div>' +
+                        '<div class="text-left" style="font-size: 1.2em;">'+ article.Article +'</div>' +
+                        '<div class="row" style="color: #aaaaaa; padding: 5px 0px;">'+ 
+                            '<div class="col-xs-5"><i class="fa fa-pencil"></i> ' + article.Creator + '</div>' +
+                            '<div class="col-xs-4 text-center"><i class="fa fa-calendar"></i> ' + article.TimeAgo + '</div>' +
+                            '<div class="col-xs-3 text-right"><i class="fa fa-comments"></i> ' + article.CommentCount + '</div>' +
+                        '</div>' +
+                    '</article>');
+                })
+            ).done(function(){
+                window.scrollBy(0,100);
+                //refreshRSSOnline();
+            });
+        }
+        else {
+            refreshRSSOnline();
+        }
 
-        $.when(
-            $.each(articles, function(i, article){
-            $('#news_fresh').append(
-                '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
-                    '<div><h3>'+ article.Title +'</h3></div>' +
-                    '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
-                        '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
-                        '<div style="position: absolute; top: 20px; left: 0px; background-color: #94D34A; color: #ffffff; padding: 5px; font-weight: bold; text-shadow: 1px 1px 2px black;">'+ article.CategoryName +'</div>' +
-                    '</div>' +
-                    '<div class="text-left" style="font-size: 1.2em;">'+ article.Article +'</div>' +
-                    '<div class="row" style="color: #aaaaaa; padding: 5px 0px;">'+ 
-                        '<div class="col-xs-5"><i class="fa fa-pencil"></i> ' + article.Creator + '</div>' +
-                        '<div class="col-xs-4 text-center"><i class="fa fa-calendar"></i> ' + article.TimeAgo + '</div>' +
-                        '<div class="col-xs-3 text-right"><i class="fa fa-comments"></i> ' + article.CommentCount + '</div>' +
-                    '</div>' +
-                '</article>');
-            })
-        ).done(function(){
-            window.scrollBy(0,100);
-            //refreshRSSOnline();
-        });
     }
-    else {
-        refreshRSSOnline();
+    catch (err) {
+        alert(err);
     }
 
  }
 
 function refreshRSSOnline() {
+    try {
         $.post("http://www.p1race.hu/api/articles/",{}, function(data) {
             $('#news_fresh').html('');
             cache_articles = data.articles;
+
+            alert( cache_articles.length + 'db letöltve');
+
             $(data.articles).each(function(i, article){
 
                 window.localStorage.setItem('article_'+article.ID, JSON.stringify(article));
@@ -141,28 +164,38 @@ function refreshRSSOnline() {
         }).fail(function(){
             window.scrollBy(0,100);
             alert('Nincs kapcsolat :(');
-        });    
+        });
+    }
+    catch(err) {
+        alert(err);
+    }
 }
 
 function refreshCategories() {
-    c = $('#aside_menu');
-    c.html('<div class="col-md-12 text-center"><select id="select_category" class="form-control"></select></div>');
+    try {
+        c = $('#aside_menu');
+        c.html('<div class="col-md-12 text-center"><select id="select_category" class="form-control"></select></div>');
 
-    s = c.find('select');
+        s = c.find('select');
 
-    $.post('http://www.p1race.hu/api/categories',{},function(data){
-        cache_categories = data.categories;
-        $(data.categories).each(function(i, category){
+        $.post('http://www.p1race.hu/api/categories',{},function(data){
+            cache_categories = data.categories;
+            $(data.categories).each(function(i, category){
 
-             s.append('<option value="'+ category.ID +'">'+ category.Name +'</option>');
+                s.append('<option value="'+ category.ID +'">'+ category.Name +'</option>');
 
-        });
+            });
 
-        c.off('change').on('change', function(){
-            $('#modal_menu').modal('hide');
-        });
+            c.off('change').on('change', function(){
+                $('#modal_menu').modal('hide');
+            });
 
-    },'json');
+        },'json');
+
+    }
+    catch(err) {
+        alert(err);
+    }
 
 }
 
