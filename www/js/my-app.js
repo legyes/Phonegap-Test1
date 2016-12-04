@@ -83,22 +83,18 @@ function checkConnection() {
 
 function refreshRSS() {
     try {
-        alert(1);
         if ( 
                 typeof window.localStorage !== 'undefined' && 
                 typeof window.localStorage !== null && 
                 typeof window.localStorage.getItem('articles' !== null) 
         ) {
-            alert(2);
-            
+           
             try {
                 local_cache = window.localStorage.getItem('articles');
             }
             catch(err) {
                 alert('local cache read error');
             }
-            alert(3);
-
             try {
                 articles = JSON.parse( local_cache );
             }
@@ -107,10 +103,13 @@ function refreshRSS() {
             }
 
             $('#news_fresh').html('');
-            alert(4);
-
             $.when(
                 $.each(articles, function(i, article){
+
+                if (i <2) {
+                    alert(article.Title);
+                }
+
                 $('#news_fresh').append(
                     '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
                         '<div><h3>'+ article.Title +'</h3></div>' +
@@ -125,12 +124,8 @@ function refreshRSS() {
                             '<div class="col-xs-3 text-right"><i class="fa fa-comments"></i> ' + article.CommentCount + '</div>' +
                         '</div>' +
                     '</article>');
-                            alert(5);
-
                 })
             ).done(function(){
-               alert(6);
-
                 window.scrollBy(0,100);
                 //refreshRSSOnline();
             });
