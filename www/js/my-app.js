@@ -130,8 +130,6 @@ function refreshRSS() {
             });
         }
         else {
-                    alert(7);
-
             refreshRSSOnline();
         }
 
@@ -148,7 +146,7 @@ function refreshRSSOnline() {
             $('#news_fresh').html('');
             cache_articles = data.articles;
 
-            alert( cache_articles.length + 'db letöltve');
+            //alert( cache_articles.length + 'db letöltve');
 
             $(data.articles).each(function(i, article){
 
