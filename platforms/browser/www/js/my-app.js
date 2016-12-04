@@ -83,11 +83,13 @@ function checkConnection() {
 
 function refreshRSS() {
     try {
+        alert(1);
         if ( 
                 typeof window.localStorage !== 'undefined' && 
                 typeof window.localStorage !== null && 
                 typeof window.localStorage.getItem('articles' !== null) 
         ) {
+            alert(2);
             
             try {
                 local_cache = window.localStorage.getItem('articles');
@@ -95,6 +97,7 @@ function refreshRSS() {
             catch(err) {
                 alert('local cache read error');
             }
+            alert(3);
 
             try {
                 articles = JSON.parse( local_cache );
@@ -104,6 +107,7 @@ function refreshRSS() {
             }
 
             $('#news_fresh').html('');
+            alert(4);
 
             $.when(
                 $.each(articles, function(i, article){
@@ -121,13 +125,19 @@ function refreshRSS() {
                             '<div class="col-xs-3 text-right"><i class="fa fa-comments"></i> ' + article.CommentCount + '</div>' +
                         '</div>' +
                     '</article>');
+                            alert(5);
+
                 })
             ).done(function(){
+               alert(6);
+
                 window.scrollBy(0,100);
                 //refreshRSSOnline();
             });
         }
         else {
+                    alert(7);
+
             refreshRSSOnline();
         }
 
