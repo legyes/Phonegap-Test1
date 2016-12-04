@@ -33,6 +33,9 @@ $(document).ready(function(){
         }
     });
     
+    if( typeof window.localStorage === 'undefined' ) {
+        alert('localStorage nem elérhető :(');
+    }
 
     //checkConnection();
     refreshRSS();
