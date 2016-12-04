@@ -85,11 +85,10 @@ function refreshRSS() {
     try {
         if ( 
                 typeof window.localStorage !== 'undefined' && 
-                typeof window.localStorage !== null && 
-                typeof window.localStorage.getItem('articles')  !== null &&
-                typeof window.localStorage.getItem('articles') !== ''
+                window.localStorage.getItem('articles')  !== null &&
+                window.localStorage.getItem('articles') !== ''
         ) {
-           
+           alert( window.localStorage.getItem('articles') );
             try {
                 local_cache = window.localStorage.getItem('articles');
             }
