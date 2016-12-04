@@ -86,10 +86,23 @@ function refreshRSS() {
         if ( 
                 typeof window.localStorage !== 'undefined' && 
                 typeof window.localStorage !== null && 
-                typeof window.localStorage.getItem('articles' !== null) &&
-                JSON.parse( window.localStorage.getItem('articles') ).length > 0
+                typeof window.localStorage.getItem('articles' !== null) 
         ) {
-            articles = JSON.parse( window.localStorage.getItem('articles') );
+            
+            try {
+                local_cache = window.localStorage.getItem('articles');
+            }
+            catch(err) {
+                alert('local cache read error');
+            }
+
+            try {
+                articles = JSON.parse( local_cache );
+            }
+            catch(err) {
+                alert('JSON parse error')
+            }
+
             $('#news_fresh').html('');
 
             $.when(
