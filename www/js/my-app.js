@@ -67,7 +67,7 @@ $(document).ready(function(){
 
     }
     catch(err) {
-        alert(err);
+        alert('document ready' + err);
     }
 
 });
@@ -120,7 +120,7 @@ function refreshRSS() {
 
     }
     catch (err) {
-        alert(err);
+        alert('refreshRSS' + err);
     }
 
  }
@@ -167,7 +167,7 @@ function refreshRSSOnline() {
         });
     }
     catch(err) {
-        alert(err);
+        alert('refreshRSSOnline' + err);
     }
 }
 
@@ -194,7 +194,7 @@ function refreshCategories() {
 
     }
     catch(err) {
-        alert(err);
+        alert('refreshCategories' + err);
     }
 
 }
