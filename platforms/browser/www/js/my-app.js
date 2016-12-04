@@ -103,12 +103,11 @@ function refreshRSS() {
             }
 
             $('#news_fresh').html('');
+
+            alert( articles[0].Title );
+
             $.when(
                 $.each(articles, function(i, article){
-
-                if (i <2) {
-                    alert(article.Title);
-                }
 
                 $('#news_fresh').append(
                     '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
