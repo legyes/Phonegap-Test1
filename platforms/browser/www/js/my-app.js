@@ -86,7 +86,9 @@ function refreshRSS() {
         if ( 
                 typeof window.localStorage !== 'undefined' && 
                 typeof window.localStorage !== null && 
-                typeof window.localStorage.getItem('articles' !== null) 
+                typeof window.localStorage.getItem('articles')  !== null &&
+                typeof window.localStorage.getItem('articles')[0] !== 'undefined' &&
+                typeof window.localStorage.getItem('articles')[0].Title !== 'undefined'
         ) {
            
             try {
@@ -103,8 +105,6 @@ function refreshRSS() {
             }
 
             $('#news_fresh').html('');
-
-            alert( articles[0].Title );
 
             $.when(
                 $.each(articles, function(i, article){
