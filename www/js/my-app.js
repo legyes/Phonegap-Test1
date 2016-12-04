@@ -29,7 +29,6 @@ $(document).ready(function(){
         $(document).on('scroll',function(){
             if( window.pageYOffset == 0 ) {
                 refreshRSSOnline();
-                alert("Frissítés");
             }
         });
         
@@ -88,7 +87,6 @@ function refreshRSS() {
                 window.localStorage.getItem('articles')  !== null &&
                 window.localStorage.getItem('articles') !== ''
         ) {
-           alert( window.localStorage.getItem('articles') );
             try {
                 local_cache = window.localStorage.getItem('articles');
             }
