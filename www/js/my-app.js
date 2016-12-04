@@ -25,12 +25,14 @@ catch (err) {
 $(document).ready(function(){
 
     $('#refresh').show();
-
+    
     $(document).on('scroll',function(){
         if( window.pageYOffset == 0 ) {
             refreshRSSOnline();
+            alert("Frissítés");
         }
     });
+    
 
     //checkConnection();
     refreshRSS();
@@ -109,6 +111,9 @@ function refreshRSSOnline() {
         $.post("http://www.p1race.hu/api/articles/",{}, function(data) {
             $('#news_fresh').html('');
             cache_articles = data.articles;
+
+            alert( cache_articles.length + 'db letöltve');
+
             $(data.articles).each(function(i, article){
 
                 window.localStorage.setItem('article_'+article.ID, JSON.stringify(article));
@@ -138,6 +143,7 @@ function refreshRSSOnline() {
                 window.open( $(this).data('target'), '_system');
             });
         }).fail(function(){
+            window.scrollBy(0,100);
             alert('Nincs kapcsolat :(');
         });    
 }

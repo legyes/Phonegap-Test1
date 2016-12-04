@@ -25,12 +25,13 @@ catch (err) {
 $(document).ready(function(){
 
     $('#refresh').show();
-
+    
     $(document).on('scroll',function(){
         if( window.pageYOffset == 0 ) {
             refreshRSSOnline();
         }
     });
+    
 
     //checkConnection();
     refreshRSS();
@@ -138,6 +139,7 @@ function refreshRSSOnline() {
                 window.open( $(this).data('target'), '_system');
             });
         }).fail(function(){
+            window.scrollBy(0,100);
             alert('Nincs kapcsolat :(');
         });    
 }
