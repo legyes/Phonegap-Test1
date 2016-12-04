@@ -87,8 +87,7 @@ function refreshRSS() {
                 typeof window.localStorage !== 'undefined' && 
                 typeof window.localStorage !== null && 
                 typeof window.localStorage.getItem('articles')  !== null &&
-                typeof window.localStorage.getItem('articles')[0] !== 'undefined' &&
-                typeof window.localStorage.getItem('articles')[0].Title !== 'undefined'
+                typeof window.localStorage.getItem('articles') !== ''
         ) {
            
             try {
