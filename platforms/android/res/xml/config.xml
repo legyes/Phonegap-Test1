@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.legyes.p1race" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <name>P1race</name>
+    <description>P1race RSS app</description>
+    <author email="legyes@legyes.hu" href="http://legyes.hu">
+        Takács - LeGyEs - József
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access origin="content:///*" />
+    <allow-navigation href="data:*" />
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="14" />
+</widget>

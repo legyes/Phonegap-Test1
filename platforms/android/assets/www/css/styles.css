@@ -1,0 +1,98 @@
+/*
+   statusbar-overlay sets the background color for the overlay. Black text is the default when the statusbar plugin is not added. When the
+   statusbar plugin is added, it also adds default setting to make the content white via:
+
+       <preference name="StatusBarStyle" value="lightcontent"/>
+
+   Setting the background color to black will allow the default light content (white text/icons) to show on it. The statusbar plugin is included
+   in the config.xml file and will be added by the CLI when you build locally.
+
+   See https://github.com/apache/cordova-plugin-statusbar
+*/
+
+.body {
+    background-color: #eeeeee;
+}
+
+#header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    width: 100%;
+    overflow: hidden; 
+    z-index: 100;
+}
+
+#header_buttons {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: #8CC63F;
+}
+
+#header_buttons .btn {
+    color: #86B54B !important;
+    font-size: 6vw;
+}
+
+aside {
+    height: 100%;
+    display: block;
+    -webkit-box-shadow: -20px 0px 110px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -20px 0px 110px 0px rgba(0,0,0,1);
+    box-shadow: -20px 0px 110px 0px rgba(0,0,0,1);
+}
+
+#aside_menu a {
+    color: #666666 !important;
+    font-size: 5vw;
+}
+
+#aside_menu a i {
+    width: 30px;
+    display: inline-block;
+    text-align: center;
+}
+
+#refresh {
+    display: none;
+    height: 100px;
+    padding-top: 40px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#content {
+    padding: 20px 0px;
+}
+
+#articles > div {
+    margin: 10px;
+    margin-bottom: 100px;
+}
+.statusbar-overlay {
+    background: #000000;
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+  width: 100%;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  width: 80%;
+  max-width: 300px;
+}

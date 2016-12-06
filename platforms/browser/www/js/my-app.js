@@ -18,46 +18,53 @@ try {
 
 }
 catch (err) {
-    //alert(err);
+    //navigator.notification.alert(err);
     // pre Android 6.0 hack
 }
 
-try {
-    function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
-    }
 
-    function onDeviceReady() {
-        document.addEventListener("pause", onPause, false);
-        document.addEventListener("resume", onResume, false);
+function onLoad() {
+
+    try {
+        navigator.app.overrideButton("menubutton", true);
         document.addEventListener("menubutton", onMenuKeyDown, false);
-        document.addEventListener("backbutton", onBackKeyDown, false);
-        // Add similar listeners for other events
     }
-    function onPause() {
-        alert('pause');
+    catch (err) {
+        navigator.notification.alert( err );
     }
 
-    function onResume() {
-        alert('Resume');
-    }
 
-    function onMenuKeyDown() {
-        alert('Menu');
-        asideMenu('toggle');
-    }
-
-    function onBackKeyDown() {
-        alert('Back');
-    }    
-}
-catch (err) {
-    alert(err);
+    document.addEventListener("deviceready", onDeviceReady, false);
 }
 
+function onDeviceReady() {
+    document.addEventListener("pause", onPause, false);
+    document.addEventListener("resume", onResume, false);
+    document.addEventListener("menubutton", onMenuKeyDown, false);
+    document.addEventListener("backbutton", onBackKeyDown, false);
+}
+ 
+function onPause() {
+    navigator.notification.alert('pause');
+    // Handle the pause event
+}
+
+function onResume() {
+    navigator.notification.alert('resume');
+    // Handle the resume event
+}
+
+function onMenuKeyDown() {
+    navigator.notification.alert('menu');
+    // Handle the menubutton event
+}
+
+function onBackKeyDown() {
+    navigator.notification.alert('back');
+    // Handle the menubutton event
+}
 
 $(document).ready(function(){
-
     try {
         //$('#refresh').show();
         
@@ -69,7 +76,7 @@ $(document).ready(function(){
         });
         */
         if( typeof window.localStorage === 'undefined' ) {
-            alert('localStorage nem elérhető :(');
+            navigator.notification.alert('localStorage nem elérhető :(');
         }
 
         //checkConnection();
@@ -98,7 +105,7 @@ $(document).ready(function(){
 
     }
     catch(err) {
-        alert('document ready' + err);
+        navigator.notification.alert('document ready' + err);
     }
 
 });
@@ -108,7 +115,7 @@ function checkConnection() {
         $('#indicator_net').html('<i class="fa fa-wifi"></i> ' + networkState);
     }    
     catch(err) {
-        alert(err);
+        navigator.notification.alert(err);
     }
 }
 
@@ -124,13 +131,13 @@ function refreshRSS() {
                 local_cache = window.localStorage.getItem('articles');
             }
             catch(err) {
-                alert('local cache read error');
+                navigator.notification.alert('local cache read error');
             }
             try {
                 articles = JSON.parse( local_cache );
             }
             catch(err) {
-                alert('JSON parse error')
+                navigator.notification.alert('JSON parse error')
             }
 
             $('#news_fresh').html('');
@@ -166,7 +173,7 @@ function refreshRSS() {
 
     }
     catch (err) {
-        alert('refreshRSS' + err);
+        navigator.notification.alert('refreshRSS' + err);
     }
 
  }
@@ -178,7 +185,7 @@ function refreshRSSOnline() {
             $('#news_fresh').html('');
             cache_articles = data.articles;
 
-            //alert( cache_articles.length + 'db letöltve');
+            //navigator.notification.alert( cache_articles.length + 'db letöltve');
 
             $('#aside_image').html('<img src="http://www.p1race.hu/data/images/news/24454_w380px_4790ee6f46b0f1da882d5a988734fcb1.jpg" alt="" style="width: 100%;" />');
 
@@ -212,11 +219,11 @@ function refreshRSSOnline() {
             });
         }).fail(function(){
             //window.scrollBy(0,100);
-            alert('Nincs kapcsolat :(');
+            navigator.notification.alert('Nincs kapcsolat :(');
         });
     }
     catch(err) {
-        alert('refreshRSSOnline' + err);
+        navigator.notification.alert('refreshRSSOnline' + err);
     }
 }
 
@@ -228,7 +235,7 @@ function refreshCategories() {
 
     }
     catch(err) {
-        alert('refreshCategories' + err);
+        navigator.notification.alert('refreshCategories' + err);
     }
 
 }
