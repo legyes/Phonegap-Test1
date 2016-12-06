@@ -45,12 +45,12 @@ function onDeviceReady() {
 }
  
 function onPause() {
-    navigator.notification.alert('pause');
+    //navigator.notification.alert('pause');
     // Handle the pause event
 }
 
 function onResume() {
-    navigator.notification.alert('resume');
+    //navigator.notification.alert('resume');
     // Handle the resume event
 }
 
@@ -60,7 +60,8 @@ function onMenuKeyDown() {
 }
 
 function onBackKeyDown() {
-    navigator.notification.alert('back');
+    //navigator.notification.alert('back');
+    asideMenu('close');
     // Handle the menubutton event
 }
 
