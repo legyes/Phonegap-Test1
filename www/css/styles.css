@@ -36,6 +36,25 @@
     font-size: 6vw;
 }
 
+aside {
+    height: 100%;
+    display: block;
+    -webkit-box-shadow: -20px 0px 110px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -20px 0px 110px 0px rgba(0,0,0,1);
+    box-shadow: -20px 0px 110px 0px rgba(0,0,0,1);
+}
+
+#aside_menu a {
+    color: #666666 !important;
+    font-size: 5vw;
+}
+
+#aside_menu a i {
+    width: 30px;
+    display: inline-block;
+    text-align: center;
+}
+
 #refresh {
     display: none;
     height: 100px;

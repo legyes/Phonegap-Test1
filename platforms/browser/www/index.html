@@ -22,7 +22,7 @@
     <div id="header">
         <img src="images/bg_head1.png" style="width: 180%;" />
         <div id="header_buttons">
-            <a href="#" class="btn" onclick="$('#modal_settings').modal('show');"><i class="fa fa-gears"></i></a>
+            <a href="#" class="btn refresh"><i class="fa fa-refresh"></i></a>
             <a href="#" class="btn" onclick="$('#modal_login').modal('show');"><i class="fa fa-user-circle-o"></i></a>
             <a href="#" class="btn" id="a_menu"><i class="fa fa-bars"></i></a>
         </div>
@@ -41,16 +41,6 @@
         </div>
 
     </div>
-
-<div id="modal_menu" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body" style="margin: 0px; padding: 0px;">
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 
 <div id="modal_login" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -88,8 +78,19 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<aside class="closed" style="background-color: #ffffff; color: #000000; position:fixed; right: -20px; top: 0px; height: 100%; width: 0px; padding: 40px 10px;">
-  <div id="aside_menu"></div>
+<aside class="closed" style="background-color: #ffffff; color: #000000; position:fixed; right: -20px; top: 0px; height: 100%; width: 0px; padding: 40px 0px;">
+  <div id="aside_menu">
+    <div id="aside_image"></div>
+    <div style="padding: 5px;">
+        <div class="refresh" style="padding: 10px;"><a href="#"><i class="fa fa-refresh"></i> Frissítés</a></div>
+        <div style="padding: 10px;"><a href="#"><i class="fa fa-cubes"></i> Kategóriák</a></div>
+        <div style="padding: 10px;"><a href="#"><i class="fa fa-shopping-cart"></i> Shop</a></div>
+        <div style="padding: 10px;"><a href="#"><i class="fa fa-user-circle-o"></i> Profil</a></div>
+        <div style="padding: 10px;"><a href="#"><i class="fa fa-gears"></i> Beállítások</a></div>
+        <div style="padding: 10px;"><a href="#"><i class="fa fa-sign-out"></i> Kijelentkezés</a></div>
+
+    </div>
+  </div>
 </aside>
 
 
