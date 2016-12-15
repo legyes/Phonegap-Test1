@@ -12,4 +12,5 @@
     <allow-navigation href="*" />
     <allow-intent href="*" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="Orientation" value="portrait" />
 </widget>

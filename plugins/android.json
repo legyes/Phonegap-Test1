@@ -24,6 +24,9 @@
         },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.legyes.p1race"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.legyes.p1race"
         }
     },
     "dependent_plugins": {}
