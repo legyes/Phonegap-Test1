@@ -22,19 +22,17 @@ catch (err) {
     // pre Android 6.0 hack
 }
 
-
 function onLoad() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+}
 
+function onDeviceReady() {
     try {
-        navigator.app.overrideButton("menubutton", true);
-        document.addEventListener("menubutton", onMenuKeyDown, false);
+        navigator.app.overrideButton("menubutton", true); 
     }
     catch (err) {
-        navigator.notification.alert( err );
+        //alert( err );
     }
-
-
-    document.addEventListener("deviceready", onDeviceReady, false);
 }
 
 function onDeviceReady() {
@@ -43,26 +41,21 @@ function onDeviceReady() {
     document.addEventListener("menubutton", onMenuKeyDown, false);
     document.addEventListener("backbutton", onBackKeyDown, false);
 }
- 
+
 function onPause() {
-    //navigator.notification.alert('pause');
-    // Handle the pause event
+    //
 }
 
 function onResume() {
-    //navigator.notification.alert('resume');
-    // Handle the resume event
+    //
 }
 
 function onMenuKeyDown() {
-    navigator.notification.alert('menu');
-    // Handle the menubutton event
+    //
 }
 
 function onBackKeyDown() {
-    //navigator.notification.alert('back');
     asideMenu('close');
-    // Handle the menubutton event
 }
 
 $(document).ready(function(){
@@ -122,6 +115,9 @@ function checkConnection() {
 
 function refreshRSS() {
     asideMenu('close');
+
+    $('#dark').show();
+
     try {
         if ( 
                 typeof window.localStorage !== 'undefined' && 
@@ -164,6 +160,7 @@ function refreshRSS() {
                     '</article>');
                 })
             ).done(function(){
+                $('#dark').hide();
                 //window.scrollBy(0,100);
                 //refreshRSSOnline();
             });
@@ -181,6 +178,7 @@ function refreshRSS() {
 
 function refreshRSSOnline() {
     asideMenu('close');
+    $('#dark').show();
     try {
         $.post("http://www.p1race.hu/api/articles/",{}, function(data) {
             $('#news_fresh').html('');
@@ -195,7 +193,7 @@ function refreshRSSOnline() {
                 window.localStorage.setItem('article_'+article.ID, JSON.stringify(article));
 
                 $('#news_fresh').append(
-                    '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
+                    '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'.article.ID.'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
                         '<div><h3>'+ article.Title +'</h3></div>' +
                         '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
                             '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
@@ -211,12 +209,14 @@ function refreshRSSOnline() {
                 });
 
         },'json').done(function(){
+            $('#dark').hide();
             //window.scrollBy(0,100);
             window.localStorage.setItem('articles', JSON.stringify(cache_articles));
 
 
             $('article').off('click').on('click',function() {
-                window.open( $(this).data('target'), '_system');
+                //window.open( $(this).data('target'), '_system');
+                getArticle( $(this).data('id') );
             });
         }).fail(function(){
             //window.scrollBy(0,100);
@@ -226,6 +226,15 @@ function refreshRSSOnline() {
     catch(err) {
         navigator.notification.alert('refreshRSSOnline' + err);
     }
+}
+
+function getArticle( article_id ) {
+    $.post('http://www.p1race.hu/api/articles/article.php',{ id : article_id }, function(data){
+
+    },'json').done(function(){
+        $('#articles').hide();
+        $('article').show();
+    });
 }
 
 function refreshCategories() {
