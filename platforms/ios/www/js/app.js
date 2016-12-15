@@ -55,11 +55,28 @@ function onMenuKeyDown() {
 }
 
 function onBackKeyDown() {
-    asideMenu('close');
-    if ( $('#article').is(':visible') ) {
+
+    if( $('aside').is(':visible') ) {
+        asideMenu('close');
+    }
+    else if ( $('#article').is(':visible') ) {
         $('#article').hide();
         $('#articles').show();
     }
+    else if( $('#articles').is(':visible') ) {
+        navigator.notification.confirm(
+            'Szeretnél kilépni?',
+            function(btnIndex){
+                if( btnIndex ===1 ) navigator.app.exitApp();
+                else return;
+            },
+            'Kilépés',
+            'Igen,Nem'
+        );
+
+
+    }
+
 
 }
 
@@ -238,7 +255,7 @@ function refreshRSSOnline() {
 }
 
 function getArticle( article_id ) {
-
+    $('#dark').show();
     $.post('http://www.p1race.hu/api/articles/article.php',{ id : article_id }, function(data){
         if ( typeof data !== 'undefined' && typeof data.article !== 'undefined' && data.article !== false && data.article !== null ) {
 
@@ -260,6 +277,7 @@ function getArticle( article_id ) {
                     '</div>' +
                 '</article>');
 
+            $('#article iframe').css('width','100%').removeAttr('height','');            
 
             if ( typeof article.comments !== 'undefined' && article.comments !== false && article.comments !== false && article.comments.length ) {
                 $.each( article.comments, function(ic, comment){
@@ -271,14 +289,10 @@ function getArticle( article_id ) {
                     );
                 });
             }
-/*
-            $('#article_title h1').html( article.Title );
-            $('#article_image').html( '<img src="http://www.p1race.hu/'+ article.Image + '" />' );
-            $('#article_short').html( article.ArticleShort );
-            $('#article_content').html( article.Article );
-*/
         }
     },'json').done(function(){
+        $('html, body').animate({scrollTop: '0px'}, 30);
+        $('#dark').hide();
         $('#articles').hide();
         $('#article').show();
     });
