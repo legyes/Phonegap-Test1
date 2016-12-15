@@ -1,5 +1,6 @@
 var cache_articles;
 var cache_categories;
+var last_article_id = false;
 
 var promises = [];
 
@@ -62,6 +63,7 @@ function onBackKeyDown() {
     else if ( $('#article').is(':visible') ) {
         $('#article').hide();
         $('#articles').show();
+        $("html, body").animate({ scrollTop: $('#article_' + last_article_id).offset().top -50 }, 1000);
     }
     else if( $('#articles').is(':visible') ) {
         navigator.notification.confirm(
@@ -168,7 +170,7 @@ function refreshRSS() {
                     icon_seen = ( getRead(article.ID ) ) ? '&nbsp;<i class="fa fa-check-circle-o"></i>' : '';
 
                     $('#news_fresh').append(
-                        '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
+                        '<article id="article_'+ article.ID +'" style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
                             '<div style="position: relative;"><h3>'+ article.Title +'</h3><div style="position: absolute; top: -15px; right: -5px; color: silver;">'+ icon_seen +'</div></div>' +
                             '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
                                 '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
@@ -221,7 +223,7 @@ function refreshRSSOnline() {
                 icon_seen = ( getRead(article.ID ) ) ? '&nbsp;<i class="fa fa-check-circle-o"></i>' : '';
 
                 $('#news_fresh').append(
-                    '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
+                    '<article id="article_'+ article.ID +'" style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
                         '<div style="position: relative;"><h3>'+ article.Title +'</h3><div style="position: absolute; top: -15px; right: -5px; color: silver;">'+ icon_seen +'</div></div>' +
                         '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
                             '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
@@ -259,6 +261,7 @@ function refreshRSSOnline() {
 function getArticle( article_id ) {
 
     setRead( article_id );
+    last_article_id = article_id;
 
     $('#dark').show();
     $.post('http://www.p1race.hu/api/articles/article.php',{ id : article_id }, function(data){
