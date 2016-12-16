@@ -63,6 +63,10 @@ function onBackKeyDown() {
     else if ( $('#article').is(':visible') ) {
         $('#article').hide();
         $('#articles').show();
+
+        $('.back').hide();
+        $('.refresh').show();
+
         $("html, body").animate({ scrollTop: $('#article_' + last_article_id).offset().top -50 }, 1000);
     }
     else if( $('#articles').is(':visible') ) {
@@ -118,6 +122,10 @@ $(document).ready(function(){
                 asideMenu('close');
             }
 
+        });
+
+        $('.back').off('click').on('click',function(){
+            onBackKeyDown();
         });
 
     }
@@ -186,8 +194,6 @@ function refreshRSS() {
                     })
             ).done(function(){
                 $('#dark').hide();
-                //window.scrollBy(0,100);
-                //refreshRSSOnline();
                 $('#articles article').off('click').on('click',function() {
                     //window.open( $(this).data('target'), '_system');
                     getArticle( $(this).data('id') );
@@ -240,17 +246,11 @@ function refreshRSSOnline() {
 
         },'json').done(function(){
             $('#dark').hide();
-            //window.scrollBy(0,100);
             window.localStorage.setItem('articles', JSON.stringify(cache_articles));
-
 
             $('#articles article').off('click').on('click',function() {
                 //window.open( $(this).data('target'), '_system');
                 getArticle( $(this).data('id') );
-            });
-
-            $('#articles').off('taphold').on('taphold',function(){
-                navigator.notification.alert('taphold');
             });
 
         }).fail(function(){
@@ -268,6 +268,10 @@ function getArticle( article_id ) {
     setRead( article_id );
     last_article_id = article_id;
 
+    $('.refresh').hide();
+    $('.back').show();
+
+
     $('#dark').show();
     $.post('http://www.p1race.hu/api/articles/article.php',{ id : article_id }, function(data){
         if ( typeof data !== 'undefined' && typeof data.article !== 'undefined' && data.article !== false && data.article !== null ) {
@@ -277,17 +281,17 @@ function getArticle( article_id ) {
             window.localStorage.setItem('article_full_'+article.ID, JSON.stringify(article));
             $('#article').html(
                 '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
+                    '<div class="row" style="color: #aaaaaa; padding: 5px 0px;">'+ 
+                        '<div class="col-xs-5"><i class="fa fa-pencil"></i> ' + article.Creator + '</div>' +
+                        '<div class="col-xs-4 text-center"><i class="fa fa-calendar"></i> ' + article.TimeAgo + '</div>' +
+                        '<div class="col-xs-3 text-right"><i class="fa fa-comments"></i> ' + article.CommentCount + '</div>' +
+                    '</div>' +
                     '<div><h3>'+ article.Title + '</h3></div>' +
                     '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
                         '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
                         '<div style="position: absolute; top: 20px; left: 0px; background-color: #94D34A; color: #ffffff; padding: 5px; font-weight: bold; text-shadow: 1px 1px 2px black;">'+ article.CategoryName +'</div>' +
                     '</div>' +
                     '<div class="text-left" style="font-size: 1.2em;">'+ article.Article +'</div>' +
-                    '<div class="row" style="color: #aaaaaa; padding: 5px 0px;">'+ 
-                        '<div class="col-xs-5"><i class="fa fa-pencil"></i> ' + article.Creator + '</div>' +
-                        '<div class="col-xs-4 text-center"><i class="fa fa-calendar"></i> ' + article.TimeAgo + '</div>' +
-                        '<div class="col-xs-3 text-right"><i class="fa fa-comments"></i> ' + article.CommentCount + '</div>' +
-                    '</div>' +
                 '</article>');
 
             $('#article iframe').css('width','100%').removeAttr('height','');            
