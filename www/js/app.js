@@ -63,6 +63,10 @@ function onBackKeyDown() {
     else if ( $('#article').is(':visible') ) {
         $('#article').hide();
         $('#articles').show();
+
+        $('.back').hide();
+        $('.refresh').show();
+
         $("html, body").animate({ scrollTop: $('#article_' + last_article_id).offset().top -50 }, 1000);
     }
     else if( $('#articles').is(':visible') ) {
@@ -118,6 +122,10 @@ $(document).ready(function(){
                 asideMenu('close');
             }
 
+        });
+
+        $('.back').off('click').on('click',function(){
+            onBackKeyDown();
         });
 
     }
@@ -248,6 +256,11 @@ function refreshRSSOnline() {
                 //window.open( $(this).data('target'), '_system');
                 getArticle( $(this).data('id') );
             });
+
+            $('#articles').off('taphold').on('taphold',function(){
+                navigator.notification.alert('taphold');
+            });
+
         }).fail(function(){
             //window.scrollBy(0,100);
             navigator.notification.alert('Nincs kapcsolat :(');
@@ -262,6 +275,10 @@ function getArticle( article_id ) {
 
     setRead( article_id );
     last_article_id = article_id;
+
+    $('.refresh').hide();
+    $('.back').show();
+
 
     $('#dark').show();
     $.post('http://www.p1race.hu/api/articles/article.php',{ id : article_id }, function(data){

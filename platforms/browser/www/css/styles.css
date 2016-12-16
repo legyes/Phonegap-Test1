@@ -125,3 +125,7 @@ aside {
   width: 80%;
   max-width: 300px;
 }
+
+.back {
+    display: none;
+}
