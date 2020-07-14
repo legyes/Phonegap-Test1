@@ -170,7 +170,7 @@ function refreshRSS() {
 
             $('#news_fresh').html('');
 
-            $('#aside_image').html('<img src="http://www.p1race.hu/data/images/news/24454_w380px_4790ee6f46b0f1da882d5a988734fcb1.jpg" alt="" style="width: 100%;" />');
+            $('#aside_image').html('<img src="http://admin.p1race.hu/data/images/news/24454_w380px_4790ee6f46b0f1da882d5a988734fcb1.jpg" alt="" style="width: 100%;" />');
 
             $.when(
                 $.each(articles, function(i, article){
@@ -178,10 +178,10 @@ function refreshRSS() {
                     icon_seen = ( getRead(article.ID ) ) ? '&nbsp;<i class="fa fa-check-circle-o"></i>' : '';
 
                     $('#news_fresh').append(
-                        '<article id="article_'+ article.ID +'" style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
+                        '<article id="article_'+ article.ID +'" style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://admin.p1race.hu/hir/'+ article.Slug +'">' +
                             '<div style="position: relative;"><h3>'+ article.Title +'</h3><div style="position: absolute; top: -15px; right: -5px; color: silver;">'+ icon_seen +'</div></div>' +
                             '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
-                                '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
+                                '<img id="image_'+ article.ID +'" src="http://admin.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
                                 '<div style="position: absolute; top: 20px; left: 0px; background-color: #94D34A; color: #ffffff; padding: 5px; font-weight: bold; text-shadow: 1px 1px 2px black;">'+ article.CategoryName +'</div>' +
                             '</div>' +
                             '<div class="text-left" style="font-size: 1.2em;">'+ article.Article +'</div>' +
@@ -215,13 +215,13 @@ function refreshRSSOnline() {
     asideMenu('close');
     $('#dark').show();
     try {
-        $.post("http://www.p1race.hu/api/articles/",{}, function(data) {
+        $.post("http://admin.p1race.hu/api/articles/",{}, function(data) {
             $('#news_fresh').html('');
             cache_articles = data.articles;
 
             //navigator.notification.alert( cache_articles.length + 'db letöltve');
 
-            $('#aside_image').html('<img src="http://www.p1race.hu/data/images/news/24454_w380px_4790ee6f46b0f1da882d5a988734fcb1.jpg" alt="" style="width: 100%;" />');
+            $('#aside_image').html('<img src="http://admin.p1race.hu/data/images/news/24454_w380px_4790ee6f46b0f1da882d5a988734fcb1.jpg" alt="" style="width: 100%;" />');
 
             $(data.articles).each(function(i, article){
 
@@ -229,10 +229,10 @@ function refreshRSSOnline() {
                 icon_seen = ( getRead(article.ID ) ) ? '&nbsp;<i class="fa fa-check-circle-o"></i>' : '';
 
                 $('#news_fresh').append(
-                    '<article id="article_'+ article.ID +'" style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
+                    '<article id="article_'+ article.ID +'" style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://admin.p1race.hu/hir/'+ article.Slug +'">' +
                         '<div style="position: relative;"><h3>'+ article.Title +'</h3><div style="position: absolute; top: -15px; right: -5px; color: silver;">'+ icon_seen +'</div></div>' +
                         '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
-                            '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
+                            '<img id="image_'+ article.ID +'" src="http://admin.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
                             '<div style="position: absolute; top: 20px; left: 0px; background-color: #94D34A; color: #ffffff; padding: 5px; font-weight: bold; text-shadow: 1px 1px 2px black;">'+ article.CategoryName +'</div>' +
                         '</div>' +
                         '<div class="text-left" style="font-size: 1.2em;">'+ article.Article +'</div>' +
@@ -273,14 +273,14 @@ function getArticle( article_id ) {
 
 
     $('#dark').show();
-    $.post('http://www.p1race.hu/api/articles/article.php',{ id : article_id }, function(data){
+    $.post('http://admin.p1race.hu/api/articles/article.php',{ id : article_id }, function(data){
         if ( typeof data !== 'undefined' && typeof data.article !== 'undefined' && data.article !== false && data.article !== null ) {
 
             article = data.article;
 
             window.localStorage.setItem('article_full_'+article.ID, JSON.stringify(article));
             $('#article').html(
-                '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://www.p1race.hu/hir/'+ article.Slug +'">' +
+                '<article style="background-color: #ffffff; border-radius: 4px; padding: 1px 10px 5px; margin: 25px 0px; box-shadow: 0px 0px 20px grey;" data-id="'+ article.ID +'" data-target="http://admin.p1race.hu/hir/'+ article.Slug +'">' +
                     '<div class="row" style="color: #aaaaaa; padding: 5px 0px;">'+ 
                         '<div class="col-xs-5"><i class="fa fa-pencil"></i> ' + article.Creator + '</div>' +
                         '<div class="col-xs-4 text-center"><i class="fa fa-calendar"></i> ' + article.TimeAgo + '</div>' +
@@ -288,7 +288,7 @@ function getArticle( article_id ) {
                     '</div>' +
                     '<div><h3>'+ article.Title + '</h3></div>' +
                     '<div style="position: relative; margin: 10px -10px; min-height: 100px;">' +
-                        '<img id="image_'+ article.ID +'" src="http://www.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
+                        '<img id="image_'+ article.ID +'" src="http://admin.p1race.hu/'+ article.Image +'" style="width: 100%;" />' +
                         '<div style="position: absolute; top: 20px; left: 0px; background-color: #94D34A; color: #ffffff; padding: 5px; font-weight: bold; text-shadow: 1px 1px 2px black;">'+ article.CategoryName +'</div>' +
                     '</div>' +
                     '<div class="text-left" style="font-size: 1.2em;">'+ article.Article +'</div>' +
@@ -300,7 +300,7 @@ function getArticle( article_id ) {
                 $.each( article.comments, function(ic, comment){
                     $('#article').append(
                         '<div style="margin: 0px 5px; padding: 5px;">' +
-                            '<div><img src="http://www.p1race.hu/'+ comment.Avatar +'" />&nbsp;&nbsp;<b style="font-size: 140%;">'+ comment.NickName +'</b></div>' +
+                            '<div><img src="http://admin.p1race.hu/'+ comment.Avatar +'" />&nbsp;&nbsp;<b style="font-size: 140%;">'+ comment.NickName +'</b></div>' +
                             '<div>'+ comment.Comment +'</div>' +
                         '</div>'
                     );
@@ -320,7 +320,7 @@ function getArticle( article_id ) {
 
 function refreshCategories() {
     try {
-        $.post('http://www.p1race.hu/api/categories',{},function(data){
+        $.post('http://admin.p1race.hu/api/categories',{},function(data){
             cache_categories = data.categories;
         },'json');
 
